@@ -58,8 +58,17 @@ header h1 {
 
 .form-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 16px;
+    margin-bottom: 16px;
+}
+
+.form-row.three-cols {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.form-row.four-cols {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 textarea,
@@ -91,17 +100,88 @@ select option {
     background: #0a0a1a;
 }
 
-.xml-actions {
+.section-label {
+    font-weight: 700;
+    color: #00d4ff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.separator {
+    border-top: 1px solid #0f3460;
+    margin: 16px 0;
+}
+
+/* Toggle FD/EV */
+.toggle-group {
+    display: flex;
+    gap: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #0f3460;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 0;
+    background: #0a0a1a;
+    color: #888;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+}
+
+.toggle-btn:hover {
+    background: #0f3460;
+    color: #e0e0e0;
+}
+
+.toggle-btn.active {
+    background: #00d4ff;
+    color: #0a0a1a;
+}
+
+/* XML Slots */
+.xml-slot {
+    background: #0d1b36;
+    border: 1px solid #0f3460;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.xml-slot-header {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
     margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.xml-slot-header label {
+    font-weight: 600;
+    color: #00d4ff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.xml-slot-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .char-count {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #888;
-    margin-left: auto;
 }
 
 .char-count.warning {
@@ -109,6 +189,27 @@ select option {
     font-weight: 600;
 }
 
+.ev-slot-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ev-slot-fields input {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+}
+
+.ev-slot-fields label {
+    font-size: 0.75rem;
+    color: #00d4ff;
+    margin-bottom: 4px;
+    display: block;
+    text-transform: uppercase;
+}
+
+/* Buttons */
 button {
     padding: 8px 16px;
     border: 1px solid #0f3460;
@@ -135,7 +236,7 @@ button:hover {
     border-color: #00d4ff;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 8px;
+    margin-top: 16px;
 }
 
 .btn-primary:hover {
@@ -143,6 +244,67 @@ button:hover {
     color: #0a0a1a;
 }
 
+.btn-secondary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+    background: transparent;
+    border: 1px dashed #0f3460;
+    color: #888;
+    margin-top: 8px;
+}
+
+.btn-secondary:hover {
+    border-color: #00d4ff;
+    color: #00d4ff;
+}
+
+.btn-remove-slot {
+    color: #ff6b6b;
+    border-color: #ff6b6b44;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+}
+
+.btn-remove-slot:hover {
+    background: #ff6b6b22;
+    border-color: #ff6b6b;
+}
+
+/* FD Conjunto */
+.fd-conjunto {
+    background: #0d1b36;
+    border: 1px solid #0f3460;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.conjunto-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.conjunto-title {
+    font-weight: 700;
+    color: #00d4ff;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.fd-conjunto .xml-slot {
+    margin-bottom: 8px;
+}
+
+.fd-conjunto .form-row {
+    margin-bottom: 8px;
+}
+
+/* Output */
 .output-section {
     background: #16213e;
     border-radius: 10px;
@@ -176,7 +338,7 @@ button:hover {
     color: #888;
 }
 
-#sqlOutput {
+.sql-output {
     background: #0a0a1a;
     border: 1px solid #0f3460;
     border-radius: 6px;
@@ -188,10 +350,16 @@ button:hover {
     line-height: 1.5;
 }
 
-#sqlOutput code {
+.sql-output code {
     color: #e0e0e0;
     font-family: 'Consolas', 'Courier New', monospace;
     white-space: pre;
+}
+
+.output-global-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .hidden {
@@ -206,8 +374,19 @@ footer {
 }
 
 @media (max-width: 700px) {
-    .form-row {
+    .form-row,
+    .form-row.three-cols,
+    .form-row.four-cols {
         grid-template-columns: 1fr;
+    }
+
+    .ev-slot-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .xml-slot-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .output-header {

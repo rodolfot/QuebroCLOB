@@ -15,28 +15,31 @@
 
         <main>
             <section class="input-section">
-                <div class="form-group">
-                    <label for="xmlInput">XML de entrada</label>
-                    <div class="xml-actions">
-                        <button id="btnLoadFile" type="button">Carregar arquivo</button>
-                        <input type="file" id="fileInput" accept=".xml,.txt" hidden>
-                        <button id="btnClearXml" type="button">Limpar</button>
-                        <span id="charCount" class="char-count">0 caracteres</span>
+                <div class="section-label">Conexao</div>
+                <div class="form-row three-cols">
+                    <div class="form-group">
+                        <label for="globalUsuario">Usuario</label>
+                        <input type="text" id="globalUsuario" placeholder="Ex: &amp;usuario">
                     </div>
-                    <textarea id="xmlInput" rows="12" placeholder="Cole o XML aqui ou carregue um arquivo..."></textarea>
+                    <div class="form-group">
+                        <label for="globalSenha">Senha</label>
+                        <input type="text" id="globalSenha" placeholder="Ex: &amp;senha">
+                    </div>
+                    <div class="form-group">
+                        <label for="globalBanco">Banco</label>
+                        <input type="text" id="globalBanco" placeholder="Ex: &amp;BANCO">
+                    </div>
                 </div>
+
+                <div class="separator"></div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="tableName">Nome da tabela</label>
-                        <input type="text" id="tableName" placeholder="Ex: TB_DOCUMENTO">
-                    </div>
-                    <div class="form-group">
-                        <label for="operationType">Operacao</label>
-                        <select id="operationType">
-                            <option value="INSERT">INSERT</option>
-                            <option value="UPDATE">UPDATE</option>
-                        </select>
+                        <label>Tipo</label>
+                        <div class="toggle-group">
+                            <button type="button" id="btnTypeFD" class="toggle-btn active">FD</button>
+                            <button type="button" id="btnTypeEV" class="toggle-btn">EV</button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="chunkSize">Tamanho do chunk</label>
@@ -48,30 +51,24 @@
                     </div>
                 </div>
 
-                <div id="updateFields" class="form-group hidden">
-                    <label for="whereClause">Clausula WHERE (sem a palavra WHERE)</label>
-                    <input type="text" id="whereClause" placeholder="Ex: id = 12345">
+                <!-- Campos FD -->
+                <div id="fdFields">
+                    <div id="fdSlots"></div>
+                    <button type="button" id="btnAddFdSlot" class="btn-secondary">+ Adicionar conjunto FD</button>
                 </div>
 
-                <div id="insertFields" class="form-group">
-                    <label for="extraColumns">Colunas adicionais no INSERT (opcional)</label>
-                    <textarea id="extraColumns" rows="3" placeholder="Uma por linha no formato: nome_coluna = valor&#10;Ex:&#10;id_documento = 123&#10;dt_criacao = SYSDATE&#10;nm_usuario = 'SISTEMA'"></textarea>
+                <!-- Campos EV -->
+                <div id="evFields" class="hidden">
+                    <div id="evSlots"></div>
+                    <button type="button" id="btnAddEvSlot" class="btn-secondary">+ Adicionar XML</button>
                 </div>
+
+                <input type="file" id="fileInput" accept=".xml,.txt" hidden>
 
                 <button id="btnGenerate" type="button" class="btn-primary">Gerar SQL</button>
             </section>
 
-            <section id="outputSection" class="output-section hidden">
-                <div class="output-header">
-                    <h2>SQL Gerado</h2>
-                    <div class="output-actions">
-                        <span id="sqlInfo" class="sql-info"></span>
-                        <button id="btnCopy" type="button">Copiar SQL</button>
-                        <button id="btnDownload" type="button">Baixar .sql</button>
-                    </div>
-                </div>
-                <pre id="sqlOutput"><code></code></pre>
-            </section>
+            <div id="outputContainer"></div>
         </main>
 
         <footer>
